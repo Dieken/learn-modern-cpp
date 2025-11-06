@@ -24,7 +24,7 @@ ifeq ($(DEBUG),false)
 else
 	CPPFLAGS += -DDEBUG
 	CXXFLAGS += -O0 -g3 -gdwarf-5 -fno-inline
-	CXXFLAGS += -fsanitize=address,undefined,null,bounds,alignment,float-divide-by-zero,float-cast-overflow
+	CXXFLAGS += -fsanitize=address,undefined,integer,bool,enum,null,bounds,alignment,float-divide-by-zero,float-cast-overflow,pointer-compare,pointer-subtract
 endif
 
 %: %.cpp
