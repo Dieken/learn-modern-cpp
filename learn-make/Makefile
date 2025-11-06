@@ -19,7 +19,7 @@ ifeq ($(DEBUG),false)
 else
 	CPPFLAGS += -DDEBUG
 	CXXFLAGS += -O0 -g3 -gdwarf-5 -fno-inline
-	CXXFLAGS += -fsanitize=address,undefined,integer,bool,enum,null,bounds,alignment,float-divide-by-zero,float-cast-overflow,pointer-compare,pointer-subtract
+	CXXFLAGS += -fsanitize=address,undefined,bool,enum,null,bounds,alignment,float-divide-by-zero,float-cast-overflow,pointer-compare,pointer-subtract
 endif
 
 %.exe: %.cpp
@@ -27,7 +27,7 @@ endif
 
 ALL_TARGETS	:= $(shell grep -Eo '^[^%\#]+\.exe\s*:' $(lastword $(MAKEFILE_LIST)))
 ALL_TARGETS	:= $(ALL_TARGETS::=)
-ALL_DEP	:= $(addsuffix .d, $(ALL_TARGETS))
+ALL_DEP	:= $(addsuffix .d, $(ALL_TARGETS)) $(addsuffix .d, $(ALL_TARGETS:.exe=))
 ALL_DSYM	:= $(addsuffix .dSYM, $(ALL_TARGETS))
 
 -include $(ALL_DEP)
