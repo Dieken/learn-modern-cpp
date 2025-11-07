@@ -1,0 +1,2 @@
+exe hello : common.cpp hello.cpp ;
+exe world : common.cpp world.cpp ;
